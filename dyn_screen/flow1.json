@@ -1,0 +1,14 @@
+[
+    {
+        "step": 1,
+        "fieldsToShow": ["legalName"]
+    },
+    {
+        "step": 2,
+        "fieldsToShow": ["storeName", "storeLocation"]
+    },
+    {
+        "step": 3,
+        "fieldsToShow": ["accountNumber", "bankName"]
+    }
+]
