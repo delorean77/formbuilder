@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flow Control Selector</title>
+</head>
+<body>
+    <h1>Select Flow Control File:</h1>
+    <select id="flowSelect">
+        <option value="flow1.json">Flow 1</option>
+        <option value="flow2.json">Flow 2</option>
+        <!-- Add more options for other flow control files -->
+    </select>
+    <button onclick="loadFlow()">Load Flow</button>
+
+    <div id="steps-container"></div>
+
+    <script>
+        var fieldsData;
+
+        async function loadFields() {
+            try {
+                const response = await fetch('fields.json');
+                fieldsData = await response.json();
+            } catch (error) {
+                console.error('Error loading fields data: ', error);
+            }
+        }
+
+        async function loadFlow() {
+            if (!fieldsData) {
+                await loadFields();
+            }
+
+            var selectedFlow = document.getElementById('flowSelect').value;
+
+            try {
+                const response = await fetch(selectedFlow);
+                const flowData = await response.json();
+                generateForm(flowData);
+            } catch (error) {
+                console.error('Error loading flow control data: ', error);
+            }
+        }
+
+        function generateForm(flowData) {
+            var currentStep = 1;
+            var totalSteps = flowData.length;
+            var stepData = flowData[currentStep - 1].fieldsToShow;
+
+            var stepHTML = '<div id="step' + currentStep + '"><h2>Step ' + currentStep + '</h2><form>';
+
+            stepData.forEach(fieldId => {
+                var field = fieldsData.find(item => item.id === fieldId);
+                if (field) {
+                    stepHTML += '<label for="' + field.id + '">' + field.label + ':</label>';
+                    stepHTML += '<input type="' + field.type + '" id="' + field.id + '"';
+                    if (field.required) {
+                        stepHTML += ' required';
+                    }
+                    stepHTML += '><br><br>';
+                }
+            });
+
+            if (currentStep > 1) {
+                stepHTML += '<button onclick="prevStep(' + currentStep + ')">Previous</button>';
+            }
+
+            if (currentStep < totalSteps) {
+                stepHTML += '<button onclick="nextStep(' + currentStep + ')">Next</button>';
+            } else {
+                stepHTML += '<button type="submit">Submit</button>';
+            }
+
+            stepHTML += '</form></div>';
+            document.getElementById('steps-container').innerHTML = stepHTML;
+        }
+    </script>
+</body>
+</html>

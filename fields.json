@@ -1,0 +1,78 @@
+[
+    {
+        "step": 1,
+        "fields": [
+            {
+                "label": "Legal Name",
+                "type": "text",
+                "id": "legalName",
+                "required": true
+            },
+            {
+                "label": "Business Type",
+                "type": "text",
+                "id": "businessType",
+                "required": false
+            }
+        ]
+    },
+    {
+        "step": 2,
+        "fields": [
+            {
+                "label": "Store Name",
+                "type": "text",
+                "id": "storeName",
+                "required": true
+            },
+            {
+                "label": "Store Location",
+                "type": "text",
+                "id": "storeLocation",
+                "required": true
+            }
+        ]
+    },
+    {
+        "step": 3,
+        "fields": [
+            {
+                "label": "Account Number",
+                "type": "text",
+                "id": "accountNumber",
+                "required": true
+            },
+            {
+                "label": "Bank Name",
+                "type": "text",
+                "id": "bankName",
+                "required": true
+            }
+        ]
+    },
+    {
+        "step": 4,
+        "fields": [
+            {
+                "label": "Contact Name",
+                "type": "text",
+                "id": "contactname",
+                "required": true
+            },
+            {
+                "label": "Position",
+                "type": "text",
+                "id": "position",
+                "required": true
+            },
+            {
+                "label": "Phone",
+                "type": "text",
+                "id": "phone",
+                "required": true
+            }
+        ]
+        
+    }
+]
+
